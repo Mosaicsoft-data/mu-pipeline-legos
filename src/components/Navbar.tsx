@@ -15,11 +15,11 @@ const Navbar = () => {
         </div>
         
         <div className="hidden md:flex space-x-6">
-          <a href="#features" className="text-foreground/80 hover:text-foreground transition-colors">Features</a>
-          <a href="#pipeline-builder" className="text-foreground/80 hover:text-foreground transition-colors">Pipeline Builder</a>
-          <a href="#solution-kits" className="text-foreground/80 hover:text-foreground transition-colors">Solution Kits</a>
+          <Link to="/features" className="text-foreground/80 hover:text-foreground transition-colors">Features</Link>
+          <Link to="/pipeline-builder" className="text-foreground/80 hover:text-foreground transition-colors">Pipeline Builder</Link>
+          <Link to="/solution-kits" className="text-foreground/80 hover:text-foreground transition-colors">Solution Kits</Link>
           <Link to="/contact" className="text-foreground/80 hover:text-foreground transition-colors">Contact</Link>
-          <a href="#" className="text-foreground/80 hover:text-foreground transition-colors">Docs</a>
+          <Link to="/docs" className="text-foreground/80 hover:text-foreground transition-colors">Docs</Link>
         </div>
         
         <div className="flex items-center space-x-4">

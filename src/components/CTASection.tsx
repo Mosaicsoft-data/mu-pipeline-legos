@@ -26,10 +26,12 @@ const CTASection = () => {
               Star on GitHub
             </Button>
           </a>
-          <Button variant="outline" className="px-6 py-6 text-lg">
-            <FileText className="mr-2 h-5 w-5" />
-            Read the Docs
-          </Button>
+          <Link to="/docs">
+            <Button variant="outline" className="px-6 py-6 text-lg">
+              <FileText className="mr-2 h-5 w-5" />
+              Read the Docs
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

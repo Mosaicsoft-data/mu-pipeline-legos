@@ -27,38 +27,32 @@ const Hero = () => {
         <div className="w-full md:w-1/2 relative">
           <div className="p-4 rounded-lg border bg-card shadow-lg">
             <div className="text-muted-foreground font-mono text-sm">pipeline.json</div>
-            <pre className="bg-muted p-4 rounded-md overflow-x-auto"><code className="text-sm md:text-base">{`{
-  "name": "customer-data-sync",
-  "modules": [
+            <pre className="bg-muted p-4 rounded-md overflow-x-auto"><code className="text-sm md:text-base">{`[
     {
-      "type": "source",
-      "id": "salesforce-connector",
-      "config": {
-        "object": "Customer",
-        "fields": ["Id", "Name", "Email"]
-      }
-    },
-    {
-      "type": "transform",
-      "id": "data-cleaner",
-      "config": {
-        "operations": [
-          { "field": "Email", "action": "lowercase" },
-          { "field": "Name", "action": "trim" }
+        "execution": [
+            {
+                "type": "IngestCSV",
+                "file_location": "/home/iceberg/warehouse/data/people.csv",
+                "delimiter": ",",
+                "quotes": "\"" ,
+                "additional_attributes": [
+                    { "key": "header", "value": "True" }
+                ]
+            },
+            {
+                "exec_type":"TransformSQL",
+                "location": "contacts_with_no_accounts.sql"
+            }
+        ],
+        "destination": [
+            {
+                "type": "DestinationDefaultCatalog ",
+                "table_name": "crm.raw.people",
+                "mode": "overwrite"
+            }
         ]
-      }
-    },
-    {
-      "type": "destination",
-      "id": "postgres-loader",
-      "config": {
-        "table": "customers",
-        "mode": "upsert",
-        "key": "Id"
-      }
     }
-  ]
-}`}</code></pre>
+]`}</code></pre>
           </div>
           <div className="absolute -top-4 -left-4 w-16 h-16 rounded-lg bg-accent opacity-30 animate-float"></div>
           <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-lg bg-secondary opacity-30 staggered-float-2"></div>

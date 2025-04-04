@@ -229,12 +229,6 @@ const PipelineBuilder = () => {
         <div className="bg-muted rounded-lg p-6 mt-8">
           <div className="flex justify-between items-center mb-4">
             <h3 className="font-semibold">Generated Pipeline Configuration</h3>
-            <Button 
-              disabled={!allSelected}
-              className="bg-primary hover:bg-primary/90"
-            >
-              Deploy Pipeline
-            </Button>
           </div>
           <pre className="bg-card p-4 rounded-md overflow-x-auto border">
             <code className="text-sm">

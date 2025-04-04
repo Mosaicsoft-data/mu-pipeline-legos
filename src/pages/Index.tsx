@@ -16,7 +16,6 @@ const Index = () => {
         <Hero />
         <Features />
         <PipelineBuilder />
-        <SolutionKits />
         <CTASection />
       </main>
       <Footer />

@@ -17,7 +17,6 @@ const Navbar = () => {
         <div className="hidden md:flex space-x-6">
           <Link to="/features" className="text-foreground/80 hover:text-foreground transition-colors">Features</Link>
           <Link to="/pipeline-builder" className="text-foreground/80 hover:text-foreground transition-colors">Pipeline Builder</Link>
-          <Link to="/solution-kits" className="text-foreground/80 hover:text-foreground transition-colors">Solution Kits</Link>
           <Link to="/contact" className="text-foreground/80 hover:text-foreground transition-colors">Contact</Link>
           <Link to="/docs" className="text-foreground/80 hover:text-foreground transition-colors">Docs</Link>
         </div>

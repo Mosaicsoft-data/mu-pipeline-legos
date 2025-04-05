@@ -16,6 +16,10 @@ const Footer = () => {
             <p className="text-muted-foreground mb-4">
               Simplifying data pipelines with a configuration-driven approach.
             </p>
+            </div>
+            <div className="flex items-center space-x-2 mb-4">
+            <span className="font-bold text-xl">Mu-Pipelines</span>
+
             <div className="flex space-x-4">
               <a href="https://github.com/Mosaicsoft-data" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

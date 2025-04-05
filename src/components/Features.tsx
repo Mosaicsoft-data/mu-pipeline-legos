@@ -9,7 +9,12 @@ import {
   ShieldCheck, 
   Zap,
   Layers,
-  Cpu
+  Cpu,
+  Code2,
+  FileJson2,
+  Workflow,
+  CloudCog,
+  BrainCircuit
 } from "lucide-react";
 
 const FeatureCard = ({ icon, title, description }: { 
@@ -33,27 +38,27 @@ const Features = () => {
     {
       icon: <Layers className="h-6 w-6" />,
       title: "Modular Architecture",
-      description: "Build pipelines using reusable components that can be assembled like LEGO blocks."
+      description: "Build E2E pipelines using reusable components that can be assembled like LEGO blocks. Our blocks provide ingestion, transformation, destination and validation capabilities.Connect to various data sources and destinations with built-in connectors."
     },
     {
-      icon: <Box className="h-6 w-6" />,
+      icon: <FileJson2 className="h-6 w-6" />,
       title: "JSON Configuration",
       description: "Define your entire data pipeline in a simple, readable JSON format."
     },
     {
-      icon: <Cloud className="h-6 w-6" />,
+      icon: <CloudCog className="h-6 w-6" />,
       title: "Cloud Agnostic",
       description: "Deploy anywhere - cloud, on-premises, or hybrid environments."
     },
     {
-      icon: <Lock className="h-6 w-6" />,
-      title: "Enterprise Security",
-      description: "Column-level encryption and advanced security features for sensitive data."
+      icon: <Code2 className="h-6 w-6" />,
+      title: "Enterprise Features",
+      description: "Bring your own brick; extend functionality with custom connectors and transformations to meet specific business needs. Column-level encryption and advanced security features for sensitive data."
     },
     {
-      icon: <Database className="h-6 w-6" />,
-      title: "Flexible Storage",
-      description: "Connect to various data sources and destinations with built-in connectors."
+      icon: <Workflow className="h-6 w-6" />,
+      title: "Workflow Orchestration",
+      description: "Schedule, chain, and manage dependencies between pipelines using your favorite orchestrator tool like airflow, ctl M etc"
     },
     {
       icon: <ArrowRightLeft className="h-6 w-6" />,
@@ -61,7 +66,7 @@ const Features = () => {
       description: "Support for both extract-transform-load and extract-load-transform patterns."
     },
     {
-      icon: <Cpu className="h-6 w-6" />,
+      icon: <BrainCircuit className="h-6 w-6" />,
       title: "AI-Powered Migration",
       description: "Intelligent migration from legacy ETL tools like SAS, SSIS, and Informatica."
     },

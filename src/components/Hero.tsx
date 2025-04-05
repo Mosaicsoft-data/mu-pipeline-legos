@@ -27,7 +27,7 @@ const Hero = () => {
         <div className="w-full md:w-1/2 relative">
           <div className="p-4 rounded-lg border bg-card shadow-lg">
             <div className="text-muted-foreground font-mono text-sm">pipeline.json</div>
-            <pre className="bg-muted p-4 rounded-md overflow-x-auto"><code className="text-sm md:text-base">{`[
+            <pre className="bg-muted p-4 rounded-md overflow-x-auto"><code className="text-xs md:text-base">{`[
     {
         "execution": [
             {

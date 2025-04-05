@@ -49,6 +49,9 @@ const ContactForm = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
+
+      if (!response.ok) throw new Error('Failed to send email');
+
       // Open the default email client (limited functionality but works for demo)
      // window.location.href = `mailto:mupipelines@gmail.com?subject=Contact from ${data.name}&body=${encodeURIComponent(emailContent)}`;
       

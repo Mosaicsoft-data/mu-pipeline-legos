@@ -54,7 +54,7 @@ const ContactForm = () => {
       
       toast({
         title: "Contact form submitted",
-        description: "Thank you for your message. We'll get back to you soon!",
+        description: "Thanks for reaching out! Your message is on its way through our data pipeline—no ETL needed! We'll get back to you soon.",
       });
       
       form.reset();

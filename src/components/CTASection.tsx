@@ -14,13 +14,13 @@ const CTASection = () => {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link to="/contact">
-            <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity px-6 py-6 text-lg">
+        <a href="https://mosaicsoft-data.github.io/mu-pipelines-doc/getting-started/" target="_blank" rel="noopener noreferrer">
+        <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity px-6 py-6 text-lg">
               Get Started
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-          </Link>
-          <a href="https://github.com/mosaicsoft/mu-pipelines" target="_blank" rel="noopener noreferrer">
+          </a>
+          <a href="https://github.com/Mosaicsoft-data" target="_blank" rel="noopener noreferrer">
             <Button variant="outline" className="px-6 py-6 text-lg">
               <Github className="mr-2 h-5 w-5" />
               Star on GitHub

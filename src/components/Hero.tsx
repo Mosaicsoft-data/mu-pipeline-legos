@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -15,13 +16,17 @@ const Hero = () => {
             Configure data pipelines like building blocks. Assemble, customize, and deploy with ease using a JSON-driven approach.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
+          <a href="https://mosaicsoft-data.github.io/mu-pipelines-doc/getting-started/" target="_blank" rel="noopener noreferrer">
             <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity px-6 py-6 text-lg">
               Get Started
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
+            </a>
+            <Link to="/docs">
             <Button variant="outline" className="px-6 py-6 text-lg">
               View Documentation
             </Button>
+            </Link>
           </div>
         </div>
         <div className="w-full md:w-1/2 relative">

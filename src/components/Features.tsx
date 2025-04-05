@@ -38,7 +38,7 @@ const Features = () => {
     {
       icon: <Layers className="h-6 w-6" />,
       title: "Modular Architecture",
-      description: "Build E2E pipelines using reusable components that can be assembled like LEGO blocks. Our blocks provide ingestion, transformation, destination and validation capabilities.Connect to various data sources and destinations with built-in connectors."
+      description: "Build end-to-end pipelines with reusable LEGO-like components and built-in connectors for ingestion, transformation, validation, and destinations."
     },
     {
       icon: <FileJson2 className="h-6 w-6" />,
@@ -53,7 +53,7 @@ const Features = () => {
     {
       icon: <Code2 className="h-6 w-6" />,
       title: "Enterprise Features",
-      description: "Bring your own brick; extend functionality with custom connectors and transformations to meet specific business needs. Column-level encryption and advanced security features for sensitive data."
+      description: "Bring your own brick; extend functionality with custom code to meet specific business needs. Advanced security features for sensitive data."
     },
     {
       icon: <Workflow className="h-6 w-6" />,

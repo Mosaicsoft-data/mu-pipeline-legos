@@ -72,7 +72,12 @@ const FeaturesPage = () => {
             </p>
           </div>
         </section>
-                       
+                     
+         <section className="py-16">
+           <div className="container mx-auto">
+             <Features />
+           </div>
+         </section>          
         <CTASection />
       </main>
       <Footer />

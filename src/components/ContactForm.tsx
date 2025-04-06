@@ -40,14 +40,6 @@ const ContactForm = () => {
   });
 
   const onSubmit = async (data: FormValues) => {
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) throw new Error('Failed to send email');
       
       toast({
         title: "Contact form submitted",
@@ -55,14 +47,7 @@ const ContactForm = () => {
       });
       
       form.reset();
-    } catch (error) {
-      console.error("Error sending contact form:", error);
-      toast({
-        title: "Something went wrong",
-        description: "Please try again later or contact us directly at mupipelines@gmail.com",
-        variant: "destructive",
-      });
-    }
+   
   };
 
   return (

@@ -40,14 +40,39 @@ const ContactForm = () => {
   });
 
   const onSubmit = async (data: FormValues) => {
-      
-      toast({
-        title: "Contact form submitted",
-        description: "Thanks for reaching out! Your message is on its way through our data pipeline—no ETL needed! We'll get back to you soon.",
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          company: data.company || 'Not specified',
+          message: data.message,
+        }),
       });
-      
-      form.reset();
-   
+
+      const result = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "Message sent successfully",
+          description: "Thanks for reaching out! We'll get back to you soon.",
+        });
+        form.reset();
+      } else {
+        throw new Error(result.error || 'Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      toast({
+        title: "Error sending message",
+        description: "There was a problem sending your message. Please try again later.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (

@@ -41,9 +41,6 @@ const ContactForm = () => {
 
   const onSubmit = async (data: FormValues) => {
     try {
-      // In a real implementation, you would send this to a server endpoint
-      // For now, we'll simulate sending an email using a client-side approach
-
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -51,9 +48,6 @@ const ContactForm = () => {
       });
 
       if (!response.ok) throw new Error('Failed to send email');
-
-      // Open the default email client (limited functionality but works for demo)
-     // window.location.href = `mailto:mupipelines@gmail.com?subject=Contact from ${data.name}&body=${encodeURIComponent(emailContent)}`;
       
       toast({
         title: "Contact form submitted",

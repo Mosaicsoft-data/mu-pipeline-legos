@@ -1,4 +1,3 @@
-// /app/api/contact/route.ts (Next.js 13+ using App Router)
 export async function POST(req: Request) {
   const { name, email, message, company } = await req.json();
 

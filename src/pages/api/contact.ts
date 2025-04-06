@@ -1,37 +1,31 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import mailgun from 'mailgun-js';
+// /app/api/contact/route.ts (Next.js 13+ using App Router)
+export async function POST(req: Request) {
+  const { name, email, message, company } = await req.json();
 
-const mg = mailgun({
-  apiKey: process.env.MAILGUN_API_KEY!,
-  domain: process.env.MAILGUN_DOMAIN!,
-});
+  const MAILGUN_DOMAIN = process.env.MAILGUN_DOMAIN!;
+  const MAILGUN_API_KEY = process.env.MAILGUN_API_KEY!;
+  const MAILGUN_FROM_EMAIL = process.env.EMAIL_RECEIVER!;
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+  const formData = new URLSearchParams();
+  formData.append("from", `Mu Pipelines <${MAILGUN_FROM_EMAIL}>`);
+  formData.append("to", "mupipelines@gmail.com");
+  formData.append("subject", `Contact from ${name}`);
+  formData.append("text", `Name: ${name}\nEmail: ${email}\nCompany: ${company || 'Not provided'}\nMessage: ${message}`);
+
+  const response = await fetch(`https://api.mailgun.net/v3${MAILGUN_DOMAIN}/messages`, {
+    method: "POST",
+    headers: {
+      Authorization: `Basic ${Buffer.from(`api:${MAILGUN_API_KEY}`).toString("base64")}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: formData.toString(),
+  });
+
+  if (!response.ok) {
+    const text = await response.text();
+    console.error("Mailgun error:", text);
+    return new Response("Failed to send email", { status: 500 });
   }
 
-  const { name, email, company, message } = req.body;
-
-  const emailContent = `
-    Name: ${name}
-    Email: ${email}
-    Company: ${company || 'Not provided'}
-    Message: ${message}
-  `;
-
-  const data = {
-    from: `Mu-Pipelines Contact <contact@${process.env.MAILGUN_DOMAIN}>`,
-    to: process.env.EMAIL_RECEIVER!,
-    subject: `New contact from ${name}`,
-    text: emailContent,
-  };
-
-  mg.messages().send(data, (error, body) => {
-    if (error) {
-      console.error('Mailgun Error:', error);
-      return res.status(500).json({ success: false, error: 'Failed to send email' });
-    }
-    res.status(200).json({ success: true, message: 'Email sent successfully' });
-  });
+  return new Response("Email sent successfully", { status: 200 });
 }

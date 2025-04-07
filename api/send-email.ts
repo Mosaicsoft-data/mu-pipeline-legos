@@ -1,7 +1,6 @@
-
-import type { NextApiRequest, NextApiResponse } from 'next';
 import formData from 'form-data';
 import Mailgun from 'mailgun.js';
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 // Initialize Mailgun
 const mailgun = new Mailgun(formData);
@@ -13,7 +12,7 @@ const mg = mailgun.client({
 const domain = process.env.MAILGUN_DOMAIN || '';
 const recipient = process.env.EMAIL_RECEIVER || 'mupipelines@gmail.com';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }

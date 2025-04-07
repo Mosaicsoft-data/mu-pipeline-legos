@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "vite.config.ts",   // The entry point for your build
+        "use": "@vercel/node"      // Vercel will use this for serverless functions
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/(.*)",        // Any route that starts with /api/
+        "dest": "/api/$1"          // Route to the corresponding serverless function in /api
+      }
+    ]
+  }
+  

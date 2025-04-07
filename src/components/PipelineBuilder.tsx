@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Database, FileText, Wand2, Server, ArrowRight } from "lucide-react";
@@ -113,25 +112,25 @@ const PipelineBuilder = () => {
       description: 'Clean and standardize data'
     },
     {
-      id: 'enrich',
+      id: 'sql',
       icon: <Wand2 className="h-4 w-4" />,
-      title: 'Data Enrichment',
-      description: 'Add calculated fields'
+      title: 'Data transformation',
+      description: 'Use SQL Queries'
     },
     {
-      id: 'filter',
+      id: 'python',
       icon: <Wand2 className="h-4 w-4" />,
-      title: 'Filtering',
-      description: 'Remove unwanted records'
+      title: 'Code',
+      description: 'Use python code'
     }
   ];
 
   const destinations = [
     {
-      id: 'postgres',
+      id: 'lakehouse',
       icon: <Server className="h-4 w-4" />,
-      title: 'PostgreSQL',
-      description: 'Load to PostgreSQL database'
+      title: 'Lakehouse',
+      description: 'Load to default lakehouse'
     },
     {
       id: 'snowflake',
@@ -151,37 +150,102 @@ const PipelineBuilder = () => {
     const source = sources.find(s => s.id === selectedSource);
     const transform = transforms.find(t => t.id === selectedTransform);
     const destination = destinations.find(d => d.id === selectedDestination);
-    
+  
     if (!source || !transform || !destination) {
       return "// Select modules from each category to generate a pipeline configuration";
     }
-    
-    return `{
-  "name": "${source.title.toLowerCase()}-to-${destination.title.toLowerCase()}",
-  "modules": [
-    {
-      "type": "source",
-      "id": "${source.id}-connector",
-      "config": {
-        // ${source.title} specific configuration
-      }
-    },
-    {
-      "type": "transform",
-      "id": "${transform.id}-processor",
-      "config": {
-        // ${transform.title} specific configuration
-      }
-    },
-    {
-      "type": "destination",
-      "id": "${destination.id}-sink",
-      "config": {
-        // ${destination.title} specific configuration
-      }
+  
+    let ingest = "";
+    let transformStep = "";
+    let destinationStep = "";
+  
+    // Handle specific cases for ingest
+    if (source.id === "salesforce") {
+      ingest = `{
+        "exec_type": "IngestSalesforce",
+        "source": "my_salesforce_crm",
+        "table": "account",
+        "incremental_lower_bound": {
+          "type": "sql",
+          "location": "account_lower_bound.sql",
+          "source": "my_salesforce_crm"
+        },
+        "incremental_upper_bound": {
+          "type": "udf",
+          "location": "current_time"
+        },
+        "number_of_partitions": 12
+      }`;
+    } else if (source.id === "mysql") {
+      ingest = `{
+        "exec_type": "IngestJDBC",
+        "source": "Mysql_crm",
+        "table": "account"
+      }`;
     }
-  ]
-}`;
+   else if (source.id === "file") {
+    ingest = `            {
+                "type": "IngestCSV",
+                "file_location": //file location,
+                "delimiter": ",",
+                "quotes": "\"" ,
+                "additional_attributes": [
+                    { "key": "header", "value": "True" }
+                ]
+            },`;
+   }
+    // Handle specific cases for transform
+    if (transform.id === "python") {
+      transformStep = `{
+        "exec_type": "TransformPython",
+        "code": "my_account_code.py"
+      }`;
+    } else if (transform.id === "cleanse") {
+      transformStep = `{
+        "exec_type": "EnrichDuplicate",
+        "key": "account_name, account_city"
+      }`;
+    } else if (transform.id === "sql") {
+    transformStep = `{
+      "exec_type": "TransformSQL",
+      "code": "transfroaccountsql.sql"
+    }`;
+  }
+    // Handle specific cases for destination
+    if (destination.id === "s3") {
+      destinationStep = `{
+        "type": "DestinationS3",
+        "file_format": "parquet",
+        "compression": "gzip",
+        "name": "account",
+        "mode": "append"
+      }`;
+    } else if (destination.id === "snowflake") {
+      destinationStep = `{
+        "type": "DestinationSnowflake",
+        "connection": "my_snowflake",
+        "table": "account",
+        "name": "account",
+        "mode": "append"
+      }`;
+    } else if (destination.id === "lakehouse") {
+      destinationStep = `            {
+                "type": "DestinationDefaultCatalog ",
+                "table_name": "crm.raw.people",
+                "mode": "overwrite"
+            }`;
+    }
+  
+    // Combine all steps into the final pipeline configuration
+    return `{
+      "execution": [
+        ${ingest},
+        ${transformStep}
+      ],
+      "destination": [
+        ${destinationStep}
+      ]
+    }`;
   };
 
   const allSelected = selectedSource && selectedTransform && selectedDestination;

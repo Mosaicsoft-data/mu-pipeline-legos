@@ -120,7 +120,7 @@ const PipelineBuilder = () => {
     {
       id: 'python',
       icon: <Wand2 className="h-4 w-4" />,
-      title: 'Code',
+      title: 'Python code',
       description: 'Use python code'
     }
   ];

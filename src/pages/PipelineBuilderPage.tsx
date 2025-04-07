@@ -23,7 +23,6 @@ const PipelineBuilderPage = () => {
         </section>
         
         <section className="py-16">
-      <div className="container mx-auto">
             <PipelineBuilder />
             
             <div className="mt-20">
@@ -32,28 +31,34 @@ const PipelineBuilderPage = () => {
                 <TabsList className="grid w-full grid-cols-4">
                   <TabsTrigger value="design">Design</TabsTrigger>
                   <TabsTrigger value="test">Test</TabsTrigger>
-                  <TabsTrigger value="deploy">Deploy</TabsTrigger>
-                  <TabsTrigger value="monitor">Monitor</TabsTrigger>
+                  <TabsTrigger value="deploy">Schedule</TabsTrigger>
+                  <TabsTrigger value="monitor">Deploy</TabsTrigger>
                 </TabsList>
                 <TabsContent value="design" className="p-6 bg-muted/30 rounded-md mt-6">
                   <h3 className="text-xl font-semibold mb-4">Design Your Pipeline</h3>
-                  <p className="mb-4">Create data pipelines with our visual builder or write JSON configurations directly. 
-                  Define sources, transformations, and destinations in a modular fashion.</p>
+                  <p className="mb-4">Craft your pipelines like building with Lego blocks. Use simple JSON configs to choose your sources, define transformations, and set destinations.</p>
                   <ul className="list-disc pl-5 space-y-2">
-                    <li>Drag-and-drop interface for building pipelines</li>
-                    <li>Code editor with JSON schema validation</li>
-                    <li>Library of pre-built components and templates</li>
-                    <li>Import configurations from existing tools</li>
+                    <li>Choose from pre-built modules or bring your own</li>
+                    <li>Support for batch, streaming, and hybrid use cases</li>
+                    <li>Add validations and alerts</li>
                   </ul>
                 </TabsContent>
                 <TabsContent value="test" className="p-6 bg-muted/30 rounded-md mt-6">
                   <h3 className="text-xl font-semibold mb-4">Test and Validate</h3>
                   <p className="mb-4">Ensure your pipelines work as expected before deployment with comprehensive testing tools.</p>
                   <ul className="list-disc pl-5 space-y-2">
-                    <li>Run pipelines with sample data</li>
+                    <li>Run pipelines locally in notebook or any IDE with sample data</li>
                     <li>Validate configurations against schemas</li>
-                    <li>Debug data flow with step-by-step execution</li>
-                    <li>Performance profiling and optimization suggestions</li>
+                    <li>Easily test isolated pipeline components</li>
+                  </ul>
+                </TabsContent>
+                <TabsContent value="schedule" className="p-6 bg-muted/30 rounded-md mt-6">
+                  <h3 className="text-xl font-semibold mb-4">Monitor and Optimize</h3>
+                  <p className="mb-4">Automate pipeline runs with flexible scheduling options.</p>
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li>Cron-like expressions or interval-based triggers</li>
+                    <li>Integrate with airflow, ctrl m or your scheduler</li>
+                    <li>Chain various pipelines togther for Dependency</li>
                   </ul>
                 </TabsContent>
                 <TabsContent value="deploy" className="p-6 bg-muted/30 rounded-md mt-6">
@@ -66,18 +71,8 @@ const PipelineBuilderPage = () => {
                     <li>Configuration versioning and history</li>
                   </ul>
                 </TabsContent>
-                <TabsContent value="monitor" className="p-6 bg-muted/30 rounded-md mt-6">
-                  <h3 className="text-xl font-semibold mb-4">Monitor and Optimize</h3>
-                  <p className="mb-4">Keep track of your pipelines' performance and health with comprehensive monitoring tools.</p>
-                  <ul className="list-disc pl-5 space-y-2">
-                    <li>Real-time execution monitoring</li>
-                    <li>Historical performance analytics</li>
-                    <li>Alerting and notification systems</li>
-                    <li>Resource usage optimization suggestions</li>
-                  </ul>
-                </TabsContent>
+
               </Tabs>
-            </div>
           </div>
         </section>
         

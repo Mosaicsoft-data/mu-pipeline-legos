@@ -37,33 +37,36 @@ const EarlyAccessSignup = () => {
       updates: true,
     },
   });
-
-  const onSubmit = async (data: FormValues) => {
+const onSubmit = async (data: FormValues) => {
     try {
-      // In a real implementation, you would send this to a server endpoint
-      // For now, we'll simulate sending an email using a client-side approach
-      
-      // Create email content
-      const emailContent = `
-        Email: ${data.email}
-        Current ETL Tool: ${data.currentTool}
-        Receive Updates: ${data.updates ? 'Yes' : 'No'}
-        Subject: Early Access Request for AI-Powered Migration
-      `;
-      
-      // Open the default email client
-      window.location.href = `mailto:mupipelines@gmail.com?subject=Early Access Request - ${data.currentTool}&body=${encodeURIComponent(emailContent)}`;
-      
-      toast({
-        title: "Early access request submitted",
-        description: "Thank you for your interest! We'll contact you when the AI migration tool is ready.",
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          Email: data.email,
+          CurrentETLTool: data.currentTool,
+          ReceiveUpdates: data.updates ,
+          Subject: "Early Access Request for AI-Powered Migration"
+        }),
       });
-      
-      form.reset();
+
+      const result = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "Early access request submitted",
+          description: "Thank you for your interest! We'll contact you when the AI migration tool is ready.",
+        });
+        form.reset();
+      } else {
+        throw new Error(result.error || 'Failed to send message');
+      }
     } catch (error) {
-      console.error("Error sending early access form:", error);
+      console.error('Error sending message:', error);
       toast({
-        title: "Something went wrong",
+        title: "Error sending message",
         description: "Please try again later or contact us directly at mupipelines@gmail.com",
         variant: "destructive",
       });

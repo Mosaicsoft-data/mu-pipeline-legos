@@ -29,7 +29,7 @@ const DocsPage = () => {
                   Read the Docs
                 </Button>
               </a>
-              <a href="https://github.com/mosaicsoft/mu-pipelines" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/Mosaicsoft-data/" target="_blank" rel="noopener noreferrer">
                 <Button variant="outline" className="px-6 py-6 text-lg">
                   <Github className="mr-2 h-5 w-5" />
                   GitHub Repository
@@ -74,32 +74,15 @@ const DocsPage = () => {
                   <CardDescription className="mb-4">
                     Step-by-step video and written tutorials to help you get started and master advanced features.
                   </CardDescription>
+                  <a href="https://mosaicsoft-data.github.io/mu-pipelines-doc/Demo%20Videos/Introduction/" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" className="w-full">
                     Browse Tutorials
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
-                </CardContent>
-              </Card>
-              
-              <Card className="h-full">
-                <CardHeader>
-                  <div className="mb-2">
-                    <Code2 className="h-10 w-10 text-primary" />
-                  </div>
-                  <CardTitle>API Reference</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="mb-4">
-                    Detailed API documentation for developers looking to extend or integrate with Mu-Pipelines.
-                  </CardDescription>
-                  <a href="https://mosaicsoft-data.github.io/mu-pipelines-doc/api" target="_blank" rel="noopener noreferrer">
-                    <Button variant="outline" className="w-full">
-                      View API Docs
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
                   </a>
                 </CardContent>
               </Card>
+              
             </div>
             
             <h2 className="text-3xl font-bold text-center mb-12">Getting Started</h2>
@@ -114,7 +97,7 @@ const DocsPage = () => {
                       <h3 className="font-semibold mb-1">Installation</h3>
                       <p className="text-muted-foreground mb-2">Install Mu-Pipelines using npm or docker:</p>
                       <pre className="bg-muted p-3 rounded-md text-sm overflow-auto">
-                        npm install -g mu-pipelines
+                      pip install 'mu-pipelines-driver[spark]
                       </pre>
                     </li>
                     <li className="pb-4 border-b border-border/40">
@@ -133,14 +116,11 @@ const DocsPage = () => {
                     </li>
                     <li className="pb-4 border-b border-border/40">
                       <h3 className="font-semibold mb-1">Run your pipeline</h3>
-                      <p className="text-muted-foreground mb-2">Execute your pipeline with the CLI:</p>
+                      <p className="text-muted-foreground mb-2">Execute your pipeline in notebook:</p>
                       <pre className="bg-muted p-3 rounded-md text-sm overflow-auto">
-                        mu-pipelines run pipeline.json
+                      from mu_pipelines_driver.run_config import run_config
+                      df = run_config(pipeline.json)
                       </pre>
-                    </li>
-                    <li>
-                      <h3 className="font-semibold mb-1">Monitor execution</h3>
-                      <p className="text-muted-foreground">View logs and metrics in the web dashboard or CLI output.</p>
                     </li>
                   </ol>
                   <div className="mt-6">
@@ -166,7 +146,7 @@ const DocsPage = () => {
                     <CardDescription className="mb-4">
                       Explore example projects that demonstrate how to use Mu-Pipelines for various scenarios.
                     </CardDescription>
-                    <a href="https://github.com/mosaicsoft/mu-pipelines-examples" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/Mosaicsoft-data/mu-pipelines-examples" target="_blank" rel="noopener noreferrer">
                       <Button variant="outline" className="w-full">
                         Browse Examples
                         <ArrowRight className="ml-2 h-4 w-4" />
@@ -179,19 +159,17 @@ const DocsPage = () => {
                   <CardHeader>
                     <div className="flex items-center">
                       <GitFork className="h-6 w-6 text-primary mr-2" />
-                      <CardTitle>Contributing</CardTitle>
+                      <CardTitle>Contributing (Coming Soon) </CardTitle>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <CardDescription className="mb-4">
                       Mu-Pipelines is open source, and we welcome contributions from the community.
                     </CardDescription>
-                    <a href="https://github.com/mosaicsoft/mu-pipelines/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">
                       <Button variant="outline" className="w-full">
                         Contribution Guide
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
-                    </a>
                   </CardContent>
                 </Card>
                 
@@ -206,7 +184,7 @@ const DocsPage = () => {
                     <CardDescription className="mb-4">
                       Find answers to frequently asked questions about Mu-Pipelines.
                     </CardDescription>
-                    <a href="https://mosaicsoft-data.github.io/mu-pipelines-doc/faq" target="_blank" rel="noopener noreferrer">
+                    <a href="https://mosaicsoft-data.github.io/mu-pipelines-doc/faq/" target="_blank" rel="noopener noreferrer">
                       <Button variant="outline" className="w-full">
                         View FAQ
                         <ArrowRight className="ml-2 h-4 w-4" />

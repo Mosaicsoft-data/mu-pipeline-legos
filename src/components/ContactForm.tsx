@@ -58,7 +58,7 @@ const ContactForm = () => {
       if (response.ok) {
         toast({
           title: "Message sent successfully",
-          description: "Thanks for reaching out! We'll get back to you soon.",
+          description: "Thanks for reaching out! Your message is on its way through our data pipeline—no ETL needed! We'll get back to you soon.",
         });
         form.reset();
       } else {
@@ -68,7 +68,7 @@ const ContactForm = () => {
       console.error('Error sending message:', error);
       toast({
         title: "Error sending message",
-        description: "There was a problem sending your message. Please try again later.",
+        description: "Please try again later or contact us directly at mupipelines@gmail.com",
         variant: "destructive",
       });
     }

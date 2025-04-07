@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Separator } from "@/components/ui/separator";
+import { FaSlack } from "react-icons/fa"; // Import Slack icon from React Icons
 
 const Footer = () => {
   return (
@@ -41,9 +42,7 @@ const Footer = () => {
                  target="_blank" 
                  rel="noopener noreferrer" 
                  className="text-primary hover:text-secondary">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 122.8 122.8" aria-hidden="true">
-                  <path d="M136.311,128a2.268,2.268,0,0,0,0,4.537h2.265v-2.268A2.27,2.27,0,0,0,136.311,128Zm0,6.049h-6.046a2.268,2.268,0,0,0,0,4.537h6.043a2.268,2.268,0,0,0,0-4.537Zm6.043,4.537a2.264,2.264,0,0,0,2.265-2.268v-6.049a2.265,2.265,0,1,0-4.531,0v6.049A2.264,2.264,0,0,0,142.354,138.585Zm8.311-2.268a2.265,2.265,0,1,0-4.531,0v2.268H148.4A2.268,2.268,0,0,0,150.665,136.317ZM148.4,140.1h-6.043a2.268,2.268,0,0,0,0,4.537H148.4a2.268,2.268,0,0,0,0-4.537Zm-6.043,6.049h-2.265v2.268a2.265,2.265,0,1,0,2.265-2.268Zm-6.043-6.049a2.266,2.266,0,0,0-2.265,2.268v6.049a2.265,2.265,0,1,0,4.531,0v-6.049a2.264,2.264,0,0,0-2.265-2.268ZM128,142.366a2.265,2.265,0,1,0,4.531,0V140.1h-2.265A2.268,2.268,0,0,0,128,142.366Z"></path>
-                </svg>
+                          <FaSlack className="w-5 h-5" /> {/* Use Slack icon */}
               </a>
             </div>
           </div>

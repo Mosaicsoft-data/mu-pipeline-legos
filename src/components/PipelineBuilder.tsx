@@ -155,97 +155,95 @@ const PipelineBuilder = () => {
       return "// Select modules from each category to generate a pipeline configuration";
     }
   
-    let ingest = "";
-    let transformStep = "";
-    let destinationStep = "";
+    let ingest = null;
+    let transformStep = null;
+    let destinationStep = null;
   
     // Handle specific cases for ingest
     if (source.id === "salesforce") {
-      ingest = `{
-        "exec_type": "IngestSalesforce",
-        "source": "my_salesforce_crm",
-        "table": "account",
-        "incremental_lower_bound": {
-          "type": "sql",
-          "location": "account_lower_bound.sql",
-          "source": "my_salesforce_crm"
+      ingest = {
+        exec_type: "IngestSalesforce",
+        source: "my_salesforce_crm",
+        table: "account",
+        incremental_lower_bound: {
+          type: "sql",
+          location: "account_lower_bound.sql",
+          source: "my_salesforce_crm"
         },
-        "incremental_upper_bound": {
-          "type": "udf",
-          "location": "current_time"
+        incremental_upper_bound: {
+          type: "udf",
+          location: "current_time"
         },
-        "number_of_partitions": 12
-      }`;
+        number_of_partitions: 12
+      };
     } else if (source.id === "mysql") {
-      ingest = `{
-        "exec_type": "IngestJDBC",
-        "source": "Mysql_crm",
-        "table": "account"
-      }`;
+      ingest = {
+        exec_type: "IngestJDBC",
+        source: "Mysql_crm",
+        table: "account"
+      };
+    } else if (source.id === "file") {
+      ingest = {
+        type: "IngestCSV",
+        file_location: "/path/to/file.csv",
+        delimiter: ",",
+        quotes: "\"",
+        additional_attributes: [
+          { key: "header", value: "True" }
+        ]
+      };
     }
-   else if (source.id === "file") {
-    ingest = `            {
-                "type": "IngestCSV",
-                "file_location": //file location,
-                "delimiter": ",",
-                "quotes": "\"" ,
-                "additional_attributes": [
-                    { "key": "header", "value": "True" }
-                ]
-            },`;
-   }
+  
     // Handle specific cases for transform
     if (transform.id === "python") {
-      transformStep = `{
-        "exec_type": "TransformPython",
-        "code": "my_account_code.py"
-      }`;
+      transformStep = {
+        exec_type: "TransformPython",
+        code: "my_account_code.py"
+      };
     } else if (transform.id === "cleanse") {
-      transformStep = `{
-        "exec_type": "EnrichDuplicate",
-        "key": "account_name, account_city"
-      }`;
+      transformStep = {
+        exec_type: "EnrichDuplicate",
+        key: "account_name, account_city"
+      };
     } else if (transform.id === "sql") {
-    transformStep = `{
-      "exec_type": "TransformSQL",
-      "code": "transfroaccountsql.sql"
-    }`;
-  }
+      transformStep = {
+        exec_type: "TransformSQL",
+        code: "transform_account_sql.sql"
+      };
+    }
+  
     // Handle specific cases for destination
     if (destination.id === "s3") {
-      destinationStep = `{
-        "type": "DestinationS3",
-        "file_format": "parquet",
-        "compression": "gzip",
-        "name": "account",
-        "mode": "append"
-      }`;
+      destinationStep = {
+        type: "DestinationS3",
+        file_format: "parquet",
+        compression: "gzip",
+        name: "account",
+        mode: "append"
+      };
     } else if (destination.id === "snowflake") {
-      destinationStep = `{
-        "type": "DestinationSnowflake",
-        "connection": "my_snowflake",
-        "table": "account",
-        "name": "account",
-        "mode": "append"
-      }`;
+      destinationStep = {
+        type: "DestinationSnowflake",
+        connection: "my_snowflake",
+        table: "account",
+        name: "account",
+        mode: "append"
+      };
     } else if (destination.id === "lakehouse") {
-      destinationStep = `            {
-                "type": "DestinationDefaultCatalog ",
-                "table_name": "crm.raw.people",
-                "mode": "overwrite"
-            }`;
+      destinationStep = {
+        type: "DestinationDefaultCatalog",
+        table_name: "crm.raw.people",
+        mode: "overwrite"
+      };
     }
   
     // Combine all steps into the final pipeline configuration
-    return `{
-      "execution": [
-        ${ingest},
-        ${transformStep}
-      ],
-      "destination": [
-        ${destinationStep}
-      ]
-    }`;
+    const pipeline = {
+      execution: [ingest, transformStep],
+      destination: [destinationStep]
+    };
+    
+    return JSON.stringify(pipeline, null, 2);
   };
 
   const allSelected = selectedSource && selectedTransform && selectedDestination;

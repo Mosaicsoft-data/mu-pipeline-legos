@@ -18,85 +18,12 @@ const PipelineBuilderPage = () => {
           <div className="container mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Pipeline Builder</h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              The intuitive way to create, test, and deploy data pipelines with our JSON-based configuration system.
-            </p>
+            Mu-Pipelines removes the complexity of traditional ETL tools by using a declarative, configuration-driven approach. Define sources, transformations, and destinations with simple JSON objects. This approach lets you version control your data infrastructure, test changes in isolation, and deploy with confidence.            </p>
           </div>
         </section>
         
         <section className="py-16">
-          <div className="container mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
-              <div>
-                <h2 className="text-3xl font-bold mb-6">Configuration-driven Architecture</h2>
-                <p className="text-lg text-muted-foreground mb-6">
-                  Mu-Pipelines removes the complexity of traditional ETL tools by using a declarative, configuration-driven approach. 
-                  Define sources, transformations, and destinations with simple JSON objects.
-                </p>
-                <p className="text-lg text-muted-foreground mb-6">
-                  This approach lets you version control your data infrastructure, test changes in isolation, and deploy with confidence.
-                </p>
-                <div className="flex space-x-4">
-                  <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90">
-                    Try it now
-                  </Button>
-                  <Button variant="outline">
-                    <Code className="mr-2 h-5 w-5" />
-                    View example configs
-                  </Button>
-                </div>
-              </div>
-              <div>
-                <Card>
-                  <CardContent className="p-6">
-                    <pre className="bg-muted p-4 rounded-md text-sm overflow-auto">
-{`{
-  "pipeline": {
-    "id": "customer_data_integration",
-    "source": {
-      "type": "postgres",
-      "config": {
-        "host": "postgres.example.com",
-        "port": 5432,
-        "database": "customers",
-        "query": "SELECT * FROM customer_data"
-      }
-    },
-    "transformations": [
-      {
-        "type": "filter",
-        "config": {
-          "column": "status",
-          "operator": "equals",
-          "value": "active"
-        }
-      },
-      {
-        "type": "map",
-        "config": {
-          "columns": {
-            "name": "customer_name",
-            "email": "contact_email"
-          }
-        }
-      }
-    ],
-    "destination": {
-      "type": "s3",
-      "config": {
-        "bucket": "customer-data-warehouse",
-        "path": "processed/",
-        "format": "parquet"
-      }
-    }
-  }
-}`}
-                    </pre>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-            
-            <h2 className="text-3xl font-bold text-center mb-12">Interactive Builder</h2>
+      <div className="container mx-auto">
             <PipelineBuilder />
             
             <div className="mt-20">

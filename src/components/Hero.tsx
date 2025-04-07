@@ -33,30 +33,25 @@ const Hero = () => {
           <div className="p-4 rounded-lg border bg-card shadow-lg">
             <div className="text-muted-foreground font-mono text-sm">pipeline.json</div>
             <pre className="bg-muted p-4 rounded-md overflow-x-auto"><code className="text-xs md:text-xs">{`[
-    {
-        "execution": [
-            {
-                "type": "IngestCSV",
-                "file_location": "/home/iceberg/warehouse/data/people.csv",
-                "delimiter": ",",
-                "quotes": "\"" ,
-                "additional_attributes": [
-                    { "key": "header", "value": "True" }
-                ]
-            },
-            {
-                "exec_type":"TransformSQL",
-                "location": "contacts_with_no_accounts.sql"
-            }
-        ],
-        "destination": [
-            {
-                "type": "DestinationDefaultCatalog ",
-                "table_name": "crm.raw.people",
-                "mode": "overwrite"
-            }
-        ]
-    }
+   {
+   "execution":[
+      {
+         "type":"IngestCSV",
+         "file_location": "contacts.csv"
+      },
+      {
+         "exec_type":"TransformSQL",
+         "location":"contacts_with_no_accounts.sql"
+      }
+   ],
+   "destination":[
+      {
+         "type":"DestinationDefaultCatalog ",
+         "table_name":"crm.raw.people",
+         "mode":"overwrite"
+      }
+   ]
+}
 ]`}</code></pre>
           </div>
           <div className="absolute -top-4 -left-4 w-16 h-16 rounded-lg bg-accent opacity-30 animate-float"></div>

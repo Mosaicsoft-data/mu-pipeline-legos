@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -41,31 +40,35 @@ const ContactForm = () => {
 
   const onSubmit = async (data: FormValues) => {
     try {
-      // In a real implementation, you would send this to a server endpoint
-      // For now, we'll simulate sending an email using a client-side approach
-
-      const response = await fetch('/api/contact', {
+      const response = await fetch('/api/send-email', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          company: data.company || 'Not specified',
+          message: data.message,
+        }),
       });
 
-      if (!response.ok) throw new Error('Failed to send email');
+      const result = await response.json();
 
-      // Open the default email client (limited functionality but works for demo)
-     // window.location.href = `mailto:mupipelines@gmail.com?subject=Contact from ${data.name}&body=${encodeURIComponent(emailContent)}`;
-      
-      toast({
-        title: "Contact form submitted",
-        description: "Thanks for reaching out! Your message is on its way through our data pipeline—no ETL needed! We'll get back to you soon.",
-      });
-      
-      form.reset();
+      if (response.ok) {
+        toast({
+          title: "Message sent successfully",
+          description: "Thanks for reaching out! We'll get back to you soon.",
+        });
+        form.reset();
+      } else {
+        throw new Error(result.error || 'Failed to send message');
+      }
     } catch (error) {
-      console.error("Error sending contact form:", error);
+      console.error('Error sending message:', error);
       toast({
-        title: "Something went wrong",
-        description: "Please try again later or contact us directly at mupipelines@gmail.com",
+        title: "Error sending message",
+        description: "There was a problem sending your message. Please try again later.",
         variant: "destructive",
       });
     }

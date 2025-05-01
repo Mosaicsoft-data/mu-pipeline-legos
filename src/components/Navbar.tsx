@@ -19,6 +19,8 @@ const Navbar = () => {
           <Link to="/pipeline-builder" className="text-foreground/80 hover:text-foreground transition-colors">Pipeline Builder</Link>
           <Link to="/contact" className="text-foreground/80 hover:text-foreground transition-colors">Contact</Link>
           <Link to="/docs" className="text-foreground/80 hover:text-foreground transition-colors">Docs</Link>
+          <Link to="/AIPipelinesPage" className="text-foreground/80 hover:text-foreground transition-colors">AIPipelinesPage</Link>
+
         </div>
         
         <div className="flex items-center space-x-4">

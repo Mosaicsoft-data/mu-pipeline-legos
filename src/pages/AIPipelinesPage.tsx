@@ -20,7 +20,7 @@ const AIPipelinesPage = () => {
                   <span className="gradient-text">Co-Create</span> Your Data Pipelines
                 </h1>
                 <p className="text-xl text-muted-foreground mb-8">
-                  Design, build, and deploy data pipelines through conversation. Just chat with our AI and see your configurations come to life in real-time.
+                  Design, build, and deploy data pipelines through conversation. Chat with our AI and see configurations come to life in real-time.
                 </p>
               </div>
             </div>
@@ -210,9 +210,7 @@ const AIPipelinesPage = () => {
               Start creating your data pipelines through conversation today. No complex configurations required.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="outline" className="px-6 py-6 text-lg">
-                Book a Demo
-              </Button>
+                <Link to="/Contact" className="text-foreground/80 hover:text-foreground transition-colors">Book a Demo</Link>              
             </div>
           </div>
         </section>

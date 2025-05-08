@@ -15,12 +15,14 @@ const AIPipelinesPage = () => {
         <section className="py-20 bg-gradient-to-r from-primary/10 to-secondary/10">
           <div className="container mx-auto">
             <div className="flex flex-col md:flex-row items-center gap-12">
+              <div className="w-full">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
                   <span className="gradient-text">Co-Create</span> Your Data Pipelines
                 </h1>
                 <p className="text-xl text-muted-foreground mb-8">
                   Design, build, and deploy data pipelines through conversation. Just chat with our AI and see your configurations come to life in real-time.
                 </p>
+              </div>
             </div>
           </div>
         </section>
@@ -91,7 +93,7 @@ const AIPipelinesPage = () => {
             </div>
           </div>
         </section>
-
+        
         {/* Features Section */}
         <section className="py-16">
           <div className="container mx-auto">

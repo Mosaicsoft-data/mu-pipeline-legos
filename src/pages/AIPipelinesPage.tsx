@@ -184,23 +184,9 @@ const AIPipelinesPage = () => {
                   </CardDescription>
                 </CardContent>
               </Card>
-
-              <Card>
-                <CardHeader>
-                  <Lock className="h-10 w-10 text-primary mb-2" />
-                  <CardTitle>Data Privacy First</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">
-                    Your data never leaves your premises. All processing happens locally within your infrastructure.
-                  </CardDescription>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </section>
-
-        
 
         {/* Call to Action */}
         <section className="py-16 bg-gradient-to-r from-primary/10 to-secondary/10">
@@ -210,8 +196,12 @@ const AIPipelinesPage = () => {
               Start creating your data pipelines through conversation today. No complex configurations required.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link to="/Contact" className="text-foreground/80 hover:text-foreground transition-colors">Book a Demo</Link>              
-            </div>
+       <a href="/Contact" target="_blank" rel="noopener noreferrer">
+        <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity px-6 py-6 text-lg">
+              Book a Demo
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </a>            </div>
           </div>
         </section>
       </main>

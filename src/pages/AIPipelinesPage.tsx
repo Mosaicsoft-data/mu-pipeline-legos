@@ -22,64 +22,78 @@ const AIPipelinesPage = () => {
                 <p className="text-xl text-muted-foreground mb-8">
                   Design, build, and deploy data pipelines through conversation. Just chat with our AI and see your configurations come to life in real-time.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity px-6 py-6 text-lg">
-                    Start Building
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                  <Button variant="outline" className="px-6 py-6 text-lg">
-                    <MessageSquare className="mr-2 h-5 w-5" />
-                    See How It Works
-                  </Button>
-                </div>
               </div>
-              <div className="w-full md:w-1/2 relative">
-                <div className="rounded-lg border bg-card shadow-lg p-4 relative">
-                  <div className="flex items-center gap-2 border-b pb-2 mb-4">
-                    <div className="flex gap-1.5">
-                      <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                      <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                      <div className="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+          </div>
+        </section>
+{/* Demo Section */}
+<section className="py-16">
+          <div className="container mx-auto">
+            <div className="bg-card rounded-lg border shadow-md p-8">
+              <div className="flex flex-col md:flex-row gap-8">
+                <div className="w-full md:w-1/2">
+                  <h2 className="text-3xl font-bold mb-4">See It In Action</h2>
+                  <p className="text-muted-foreground mb-6">
+                    Watch how easily you can create complex data pipelines through simple conversation with our AI assistant.
+                  </p>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <span className="text-primary font-semibold">You</span>
+                      </div>
+                      <div className="bg-muted p-3 rounded-lg text-sm">
+                        I need a pipeline that loads customer data from S3 and joins it with purchase history
+                      </div>
                     </div>
-                    <div className="text-xs text-muted-foreground">pipeline-builder.json</div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
+                        <span className="text-secondary font-semibold">AI</span>
+                      </div>
+                      <div className="bg-secondary/10 p-3 rounded-lg text-sm">
+                        I'll help you create that pipeline. Let's start with defining the source for customer data. What's the S3 bucket and path pattern?
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <span className="text-primary font-semibold">You</span>
+                      </div>
+                      <div className="bg-muted p-3 rounded-lg text-sm">
+                        The bucket is "customer-data" and the files are at "/daily/customers-*.csv"
+                      </div>
+                    </div>
                   </div>
-                  <pre className="bg-muted p-4 rounded-md overflow-x-auto text-xs md:text-sm">
-                    <code className="text-foreground">{`{
+                </div>
+                <div className="w-full md:w-1/2 bg-muted rounded-lg p-4">
+                  <div className="text-xs text-muted-foreground mb-2">pipeline-preview.json</div>
+                  <pre className="overflow-auto p-2 rounded bg-background text-xs">
+                    <code>{`{
   "pipeline": {
-    "name": "customer_data_ingest",
+    "name": "customer_data_pipeline",
     "source": {
       "type": "s3",
-      "bucket": "source-data",
-      "path": "/customers/*.csv"
+      "bucket": "customer-data",
+      "path": "/daily/customers-*.csv",
+      "format": "csv",
+      "options": {
+        "header": true,
+        "inferSchema": true
+      }
     },
     "transforms": [
-      {
-        "type": "deduplicate",
-        "columns": ["email", "customer_id"]
-      },
-      {
-        "type": "join",
-        "with": "purchases",
-        "on": "customer_id"
-      }
+      // More will be added as we continue...
     ],
     "destination": {
-      "type": "snowflake",
-      "database": "analytics",
-      "schema": "public",
-      "table": "customers_enriched"
+      // Will be defined next...
     }
   }
 }`}</code>
                   </pre>
                 </div>
-                <div className="absolute -top-4 -right-4 w-24 h-24 rounded-full bg-primary opacity-10 animate-float"></div>
-                <div className="absolute -bottom-4 -left-4 w-16 h-16 rounded-full bg-secondary opacity-10 staggered-float-2"></div>
               </div>
             </div>
           </div>
         </section>
-
+        
         {/* Features Section */}
         <section className="py-16">
           <div className="container mx-auto">
@@ -186,73 +200,7 @@ const AIPipelinesPage = () => {
           </div>
         </section>
 
-        {/* Demo Section */}
-        <section className="py-16">
-          <div className="container mx-auto">
-            <div className="bg-card rounded-lg border shadow-md p-8">
-              <div className="flex flex-col md:flex-row gap-8">
-                <div className="w-full md:w-1/2">
-                  <h2 className="text-3xl font-bold mb-4">See It In Action</h2>
-                  <p className="text-muted-foreground mb-6">
-                    Watch how easily you can create complex data pipelines through simple conversation with our AI assistant.
-                  </p>
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                        <span className="text-primary font-semibold">You</span>
-                      </div>
-                      <div className="bg-muted p-3 rounded-lg text-sm">
-                        I need a pipeline that loads customer data from S3 and joins it with purchase history
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
-                        <span className="text-secondary font-semibold">AI</span>
-                      </div>
-                      <div className="bg-secondary/10 p-3 rounded-lg text-sm">
-                        I'll help you create that pipeline. Let's start with defining the source for customer data. What's the S3 bucket and path pattern?
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                        <span className="text-primary font-semibold">You</span>
-                      </div>
-                      <div className="bg-muted p-3 rounded-lg text-sm">
-                        The bucket is "customer-data" and the files are at "/daily/customers-*.csv"
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full md:w-1/2 bg-muted rounded-lg p-4">
-                  <div className="text-xs text-muted-foreground mb-2">pipeline-preview.json</div>
-                  <pre className="overflow-auto p-2 rounded bg-background text-xs">
-                    <code>{`{
-  "pipeline": {
-    "name": "customer_data_pipeline",
-    "source": {
-      "type": "s3",
-      "bucket": "customer-data",
-      "path": "/daily/customers-*.csv",
-      "format": "csv",
-      "options": {
-        "header": true,
-        "inferSchema": true
-      }
-    },
-    "transforms": [
-      // More will be added as we continue...
-    ],
-    "destination": {
-      // Will be defined next...
-    }
-  }
-}`}</code>
-                  </pre>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        
 
         {/* Call to Action */}
         <section className="py-16 bg-gradient-to-r from-primary/10 to-secondary/10">
@@ -262,10 +210,6 @@ const AIPipelinesPage = () => {
               Start creating your data pipelines through conversation today. No complex configurations required.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity px-6 py-6 text-lg">
-                Get Started Free
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
               <Button variant="outline" className="px-6 py-6 text-lg">
                 Book a Demo
               </Button>

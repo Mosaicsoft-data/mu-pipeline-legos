@@ -6,7 +6,7 @@ import { ArrowRight, MessageSquare, Zap, Code2, Database, Lock, LayoutPanelLeft,
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from 'react-router-dom';
 
-const AIPipelinesPage = () => {
+const AIPipelines = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -93,7 +93,73 @@ const AIPipelinesPage = () => {
             </div>
           </div>
         </section>
-        
+        {/* Migration Demo Section */}
+<section className="py-16">
+          <div className="container mx-auto">
+            <div className="bg-card rounded-lg border shadow-md p-8">
+              <div className="flex flex-col md:flex-row gap-8">
+                <div className="w-full md:w-1/2">
+                  <h2 className="text-3xl font-bold mb-4">Intelligent Migration </h2>
+                  <p className="text-muted-foreground mb-6">
+                  Seamlessly migrate your data pipelines from legacy systems (Informatica, SSIS etc ) to modern platforms with AI-driven automation. Reduce migration time by up to 80%                  
+                  </p>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <span className="text-primary font-semibold">You</span>
+                      </div>
+                      <div className="bg-muted p-3 rounded-lg text-sm">
+                        I need a pipeline that loads customer data from S3 and joins it with purchase history
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
+                        <span className="text-secondary font-semibold">AI</span>
+                      </div>
+                      <div className="bg-secondary/10 p-3 rounded-lg text-sm">
+                        I'll help you create that pipeline. Let's start with defining the source for customer data. What's the S3 bucket and path pattern?
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <span className="text-primary font-semibold">You</span>
+                      </div>
+                      <div className="bg-muted p-3 rounded-lg text-sm">
+                        The bucket is "customer-data" and the files are at "/daily/customers-*.csv"
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full md:w-1/2 bg-muted rounded-lg p-4">
+                  <div className="text-xs text-muted-foreground mb-2">pipeline-preview.json</div>
+                  <pre className="overflow-auto p-2 rounded bg-background text-xs">
+                    <code>{`{
+  "pipeline": {
+    "name": "customer_data_pipeline",
+    "source": {
+      "type": "s3",
+      "bucket": "customer-data",
+      "path": "/daily/customers-*.csv",
+      "format": "csv",
+      "options": {
+        "header": true,
+        "inferSchema": true
+      }
+    },
+    "transforms": [
+      // More will be added as we continue...
+    ],
+    "destination": {
+      // Will be defined next...
+    }
+  }
+}`}</code>
+                  </pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
         {/* Features Section */}
         <section className="py-16">
           <div className="container mx-auto">
@@ -210,4 +276,4 @@ const AIPipelinesPage = () => {
   );
 };
 
-export default AIPipelinesPage;
+export default AIPipelines;

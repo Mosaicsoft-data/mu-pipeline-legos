@@ -33,7 +33,7 @@ const CodeView: React.FC<CodeViewProps> = ({
         )}
       </div>
       
-      <ScrollArea className="flex-1">
+      <ScrollArea className="flex-1 border border-border/30 rounded-sm p-2 overflow-visible" type="always">
         <pre className="whitespace-pre-wrap">
           {showLegacyCode ? legacyCode : convertedCode}
         </pre>

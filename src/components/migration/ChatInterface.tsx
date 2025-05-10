@@ -34,7 +34,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
         <span className="text-sm font-medium">Migration Assistant</span>
       </div>
       
-      <ScrollArea className="flex-1 p-3">
+      <ScrollArea className="flex-1 p-3 border-b border-border/30" type="always">
         <div className="space-y-4">
           {conversation.map((msg, idx) => (
             <ChatMessage key={idx} type={msg.type} message={msg.message} />

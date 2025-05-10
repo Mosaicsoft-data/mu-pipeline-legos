@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface CodeViewProps {
   showLegacyCode: boolean;
@@ -15,7 +16,7 @@ const CodeView: React.FC<CodeViewProps> = ({
   isAnalyzing 
 }) => {
   return (
-    <div className="bg-background rounded-md p-4 font-mono text-xs overflow-auto">
+    <div className="bg-background rounded-md p-4 font-mono text-xs h-full flex flex-col">
       <div className="flex items-center text-muted-foreground mb-2">
         <span className="text-xs uppercase font-semibold">
           {showLegacyCode ? "customer_pipeline.dtsx" : "customer_pipeline.json"}
@@ -32,9 +33,11 @@ const CodeView: React.FC<CodeViewProps> = ({
         )}
       </div>
       
-      <pre className="whitespace-pre-wrap overflow-auto">
-        {showLegacyCode ? legacyCode : convertedCode}
-      </pre>
+      <ScrollArea className="flex-1">
+        <pre className="whitespace-pre-wrap">
+          {showLegacyCode ? legacyCode : convertedCode}
+        </pre>
+      </ScrollArea>
     </div>
   );
 };

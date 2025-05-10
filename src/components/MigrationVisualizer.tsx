@@ -28,19 +28,7 @@ const MigrationVisualizer = () => {
             message: currentMessage.text 
           }
         ]);
-        
-        // Show toast notifications for key AI messages
-        if (currentMessage.role === 'ai' && 
-           (currentMessage.text.includes("analyze") || 
-            currentMessage.text.includes("identified") ||
-            currentMessage.text.includes("Generating") ||
-            currentMessage.text.includes("Migration complete"))) {
-          toast({
-            title: "Migration Assistant",
-            description: currentMessage.text,
-          });
-        }
-        
+               
         // Switch to JSON view when migration is complete
         if (currentMessage.text.includes("Migration complete")) {
           setShowLegacyCode(false);

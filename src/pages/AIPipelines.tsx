@@ -212,7 +212,7 @@ const AIPipelines = () => {
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Export & Deploy</h3>
                 <p className="text-muted-foreground">
-                  Export your completed pipeline configuration as JSON or YAML to deploy on your own infrastructure.
+                  Export your completed pipeline configuration as JSON to deploy on your own infrastructure.
                 </p>
               </div>
             </div>

@@ -64,7 +64,7 @@ const Hero = () => {
               <div className="pipeline-component destination-block">
                 <div className="component-header">Destination</div>
                 <div className="component-body">
-                  <pre className="text-xs md:text-xs">{`DestinationIceberg}`}</pre>
+                  <pre className="text-xs md:text-xs">{`DestinationIceberg`}</pre>
                 </div>
               </div>
             </div>

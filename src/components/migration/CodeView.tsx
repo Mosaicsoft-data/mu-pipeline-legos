@@ -16,8 +16,9 @@ const CodeView: React.FC<CodeViewProps> = ({
   isAnalyzing 
 }) => {
   return (
-    <div className="bg-background rounded-md p-4 font-mono text-xs h-full flex flex-col">
-      <div className="flex items-center text-muted-foreground mb-2">
+
+    <div className="bg-background border rounded-md p-4 font-mono text-xs h-[380px] flex flex-col" >
+      <div className="flex items-center text-muted-foreground mb-2" >
         <span className="text-xs uppercase font-semibold">
           {showLegacyCode ? "customer_pipeline.dtsx" : "customer_pipeline.json"}
         </span>
@@ -32,12 +33,12 @@ const CodeView: React.FC<CodeViewProps> = ({
           </span>
         )}
       </div>
-      
-      <ScrollArea className="flex-1 border border-border/30 rounded-sm p-2 overflow-visible" type="always">
-        <pre className="whitespace-pre-wrap">
+
+      <div className="space-y-4" style={{ overflowY: 'scroll' }} >
+      <pre className="whitespace-pre-wrap overflow-y-auto">
           {showLegacyCode ? legacyCode : convertedCode}
         </pre>
-      </ScrollArea>
+        </div>
     </div>
   );
 };

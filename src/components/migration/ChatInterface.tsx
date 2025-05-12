@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { MessageSquare, ArrowRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -28,19 +27,18 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
   };
 
   return (
-    <div className="flex flex-col h-full border rounded-md">
+    <div className="flex flex-col h-[400px] border rounded-md">
+
       <div className="p-2 border-b flex items-center">
         <MessageSquare className="h-4 w-4 mr-2" />
         <span className="text-sm font-medium">Migration Assistant</span>
       </div>
-      
-      <ScrollArea className="flex-1 p-3 border-b border-border/30" type="always">
-        <div className="space-y-4">
+
+        <div className="space-y-4" style={{ overflowY: 'scroll' }} >
           {conversation.map((msg, idx) => (
             <ChatMessage key={idx} type={msg.type} message={msg.message} />
           ))}
         </div>
-      </ScrollArea>
       
       <div className="p-3 border-t">
         <form onSubmit={onSendMessage} className="flex gap-2">

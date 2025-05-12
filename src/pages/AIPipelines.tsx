@@ -153,14 +153,6 @@ const AIPipelines = () => {
                     <MigrationVisualizer />
                   </div>
                 </div>
-                
-                <div className="mt-4 p-4 bg-secondary/10 rounded-lg border border-secondary/20">
-                  <h4 className="font-semibold mb-2">Migration Success Story</h4>
-                  <p className="text-sm text-muted-foreground">
-                    "We migrated over 200 legacy SSIS packages to Mu-Pipelines in just 3 weeks - a process that would have taken months manually. The AI correctly mapped 95% of components without any human intervention."
-                  </p>
-                  <p className="text-sm font-medium mt-2">— Sarah Chen, Data Engineering Lead at FinTech Solutions Inc.</p>
-                </div>
               </div>
             </div>
             

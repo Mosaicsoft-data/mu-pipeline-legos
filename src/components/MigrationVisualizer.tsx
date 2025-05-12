@@ -75,7 +75,7 @@ const MigrationVisualizer = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col">
+    <div className="w-full h-full flex flex-col max-w-5xl mx-auto">
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center">
           <div className="w-3 h-3 rounded-full bg-red-500 mr-1.5"></div>

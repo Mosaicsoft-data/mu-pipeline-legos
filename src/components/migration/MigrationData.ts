@@ -47,34 +47,24 @@ export const legacyCode = `<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServe
 </DTS:Executable>`;
 
 export const convertedCode = `{
-  "pipeline": {
-    "name": "customer_pipeline",
-    "source": {
-      "type": "sql",
-      "connection": {
-        "server": "SQLSERVER01",
-        "database": "CustomerDB",
-        "authentication": "windows"
-      },
-      "query": "SELECT * FROM Customers WHERE Region = 'West'"
+  "name": "customer_pipeline",
+  "execution": [
+    {
+      "type": "IngestJDBC",
+      "name": "jdbc_connection_customers",
+      "connection_name": "jdbc_sqlserver",
+      "query": "SELECT * FROM Customers WHERE Region = 'West''"
     },
-    "transforms": [
-      {
-        "type": "DerivedColumn",
-        "columns": [
-          {
-            "name": "FullName",
-            "expression": "concat(FirstName, ' ', LastName)"
-          }
-        ]
-      }
-    ],
-    "destination": {
-      "type": "OutputTable",
-      "table": "CustomerStaging",
-      "create_if_not_exists": true
+    {
+      "type": "DerivedColumn",
+      "columns": [
+        {
+          "name": "FullName",
+          "expression": "concat(FirstName, ' ', LastName)"
+        }
+      ]
     }
-  }
+  ]
 }`;
 
 export const conversationFlow = [

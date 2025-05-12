@@ -36,10 +36,7 @@ const Hero = () => {
               <div className="pipeline-component source-block">
                 <div className="component-header">Source</div>
                 <div className="component-body">
-                  <pre className="text-xs md:text-xs">{`{
-  "type": "IngestCSV",
-  "file_location": "contacts.csv"
-}`}</pre>
+                  <pre className="text-xs md:text-xs">{` IngestCSV `}</pre>
                 </div>
                 <div className="data-particle-container">
                   {[...Array(3)].map((_, i) => (
@@ -53,10 +50,7 @@ const Hero = () => {
               <div className="pipeline-component transform-block">
                 <div className="component-header">Transform</div>
                 <div className="component-body">
-                  <pre className="text-xs md:text-xs">{`{
-  "exec_type": "TransformSQL",
-  "location": "contacts_with_no_accounts.sql"
-}`}</pre>
+                  <pre className="text-xs md:text-xs">{` TransformSQL `}</pre>
                 </div>
                 <div className="data-particle-container">
                   {[...Array(3)].map((_, i) => (
@@ -70,11 +64,7 @@ const Hero = () => {
               <div className="pipeline-component destination-block">
                 <div className="component-header">Destination</div>
                 <div className="component-body">
-                  <pre className="text-xs md:text-xs">{`{
-  "type": "DestinationDefaultCatalog",
-  "table_name": "crm.raw.people",
-  "mode": "overwrite"
-}`}</pre>
+                  <pre className="text-xs md:text-xs">{`DestinationIceberg}`}</pre>
                 </div>
               </div>
             </div>

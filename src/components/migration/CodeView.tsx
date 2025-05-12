@@ -19,7 +19,7 @@ const CodeView: React.FC<CodeViewProps> = ({
     <div className="bg-background border rounded-md p-4 font-mono text-xs h-[380px] flex flex-col">
       <div className="flex items-center text-muted-foreground mb-2">
         <span className="text-xs uppercase font-semibold">
-          {showLegacyCode ? "customer_pipeline.dtsx" : "customer_pipeline.json"}
+          {showLegacyCode ? "customer_pipeline.dtsx (SSIS)" : "customer_pipeline.json (mu-pipelines)"}
         </span>
         {isAnalyzing && showLegacyCode && (
           <span className="ml-auto text-xs bg-blue-500/10 text-blue-500 px-2 py-0.5 rounded">

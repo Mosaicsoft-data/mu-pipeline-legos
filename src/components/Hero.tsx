@@ -32,27 +32,52 @@ const Hero = () => {
         <div className="w-full md:w-1/2 relative">
           <div className="p-4 rounded-lg border bg-card shadow-lg">
             <div className="text-muted-foreground font-mono text-sm">pipeline.json</div>
-            <pre className="bg-muted p-4 rounded-md overflow-x-auto"><code className="text-xs md:text-xs">{`[
-   {
-   "execution":[
-      {
-         "type":"IngestCSV",
-         "file_location": "contacts.csv"
-      },
-      {
-         "exec_type":"TransformSQL",
-         "location":"contacts_with_no_accounts.sql"
-      }
-   ],
-   "destination":[
-      {
-         "type":"DestinationDefaultCatalog ",
-         "table_name":"crm.raw.people",
-         "mode":"overwrite"
-      }
-   ]
-}
-]`}</code></pre>
+            <div className="pipeline-animation-container">
+              <div className="pipeline-component source-block">
+                <div className="component-header">Source</div>
+                <div className="component-body">
+                  <pre className="text-xs md:text-xs">{`{
+  "type": "IngestCSV",
+  "file_location": "contacts.csv"
+}`}</pre>
+                </div>
+                <div className="data-particle-container">
+                  {[...Array(3)].map((_, i) => (
+                    <div key={`source-${i}`} className="data-particle" style={{animationDelay: `${i * 0.8}s`}}></div>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="flow-arrow">→</div>
+              
+              <div className="pipeline-component transform-block">
+                <div className="component-header">Transform</div>
+                <div className="component-body">
+                  <pre className="text-xs md:text-xs">{`{
+  "exec_type": "TransformSQL",
+  "location": "contacts_with_no_accounts.sql"
+}`}</pre>
+                </div>
+                <div className="data-particle-container">
+                  {[...Array(3)].map((_, i) => (
+                    <div key={`transform-${i}`} className="data-particle" style={{animationDelay: `${i * 0.8 + 0.4}s`}}></div>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="flow-arrow">→</div>
+              
+              <div className="pipeline-component destination-block">
+                <div className="component-header">Destination</div>
+                <div className="component-body">
+                  <pre className="text-xs md:text-xs">{`{
+  "type": "DestinationDefaultCatalog",
+  "table_name": "crm.raw.people",
+  "mode": "overwrite"
+}`}</pre>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="absolute -top-4 -left-4 w-16 h-16 rounded-lg bg-accent opacity-30 animate-float"></div>
           <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-lg bg-secondary opacity-30 staggered-float-2"></div>

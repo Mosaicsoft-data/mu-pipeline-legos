@@ -14,6 +14,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import AIPipelines from "./pages/AIPipelines";
 import BrandKitPage from "./pages/BrandKitPage";
+import PitchDeckPage from "./pages/PitchDeckPage";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/AIPipelines" element={<AIPipelines />} />
           <Route path="/brand-kit" element={<BrandKitPage />} />
+          <Route path="/pitch-deck" element={<PitchDeckPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
